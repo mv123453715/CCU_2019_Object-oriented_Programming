@@ -1,0 +1,59 @@
+0.題目：HW4 Polygon & Polynomial
+1.學號:406410114
+2.姓名:郭晏誠
+3.環境(哪一台工作站):csie2
+4.E-mail:mv123453715@gmail.com
+5.操作方法
+    (1)make
+    (2)./HW3_A_Polygon.out即可看到Part_A結果
+    (3)./HW3_B_Polynomial.out即可看到Part_B結果
+6.簡介:   
+    (1)Part A Polygon(50%) 
+      (i)Polygon.h：定義class Polygon 包含(a)~(h)
+          (a)建構子 : Polygon (unsigned int m = 0, unsigned int n = 0):_m(m),_n(n) 採用member initializer進行初始化
+          (b)解構子 : ~Polygon () 會cout << "destructor" << endl;
+          (c)複製建構子 : Polygon (const Polygon& mt) 會cout << "copy constructor" << endl;
+          (d)const double  getValue (unsigned int m, unsigned int n)const  //取得第 m 個點中第 n 維的值
+          (e)bool setValue (double & value, unsigned int m, unsigned int n);//設定第 m 個點中第 n 維的值
+          (f)double* FindCentroid() const; // return the centroid of the // 給出多邊形的「重心」座標
+          (g)const int getNumOfPoints() const { return _m; };//取得_m
+          (h)const int getDimension() const { return _n; };//取得_n
+          (i)void  PrintPoints(Polygon p) ; //印出p的_point
+      (ii)Polygon_getValue.cpp：實作了(i)(d)
+      (iii)Polygon_setValue.cpp：實作了(i)(e)
+      (iv)Polygon_FindCentroid.cpp：實作了(i)(f)
+      (v)Polygon_PrintPoints.cpp：實作了(i)(i)
+
+
+    (2)Part B Polynomial(40%)
+      (i)Polynomial.h：定義(a)~(h)
+          (a)class Term：包含CoefType coef和int expo
+          (b)class Node：包含Term data和NodePointer next
+          (c)bool Term_compare( const Term& a,const Term& b );
+          (d)const void PrintPolynomial() const：輸出當前多項式的項目
+          (e)class Polynomial建構子 : Polynomial (CoefType* c = NULL, int* e = NULL, int num = 0)
+              ● cout << "Polynomial default constructor" << endl;
+              ● 會先將input的CoefType* c和int* e建立Term array利用(c)的比較函式進行sort，sort前後都會輸出CoefType* c和int* e
+              ● 開始多項式以降冪方式呈現，且若有相同次方的項，則應相加
+              ● constructor結束後會呼叫(d)輸出當前結果
+          (f)class Polynomial解構子 : cout << "Polynomial destructor" << endl; 並且將整個list回收
+          (g)void add (const CoefType c, const  int e);
+              ● 新增一個「項」，若該項的次方已存在，則係數相加
+              ● 若還沒有constructor則會cout << "Polynomial is null don't add " << endl;
+              ● add結束後會呼叫(d)輸出當前結果
+          (h)void differentiate();
+              ● 多項式微分，會刪除原本為常數項的部分
+              ● 若還沒有constructor或Polynomial已經為空則會cout << "Polynomial is null don't differentiate !"<<endl;
+              ● differentiate結束後會呼叫(d)輸出當前結果
+      (ii)Polynomial_Term_compare.cpp：實作了(i)(c)
+      (iii)Polynomial_PrintPolynomial.cpp：實作了(i)(d)
+      (iv)Polynomial_add.cpp：實作了(i)(g)
+      (iii)Polynomial_differentiate.cpp：實作了(i)(h)
+      (iv)Polynomial_main.cpp：測試用檔案
+        
+        
+        
+    (3)Makefile(10%)
+      (i) 輸入 make 時，會把 source code 編譯出 HW3_A_Polygon.out和HW3_B_Polynomial.out
+      (ii)輸入 make clean 時，可以把所有的中間檔和執行檔清除
+        

@@ -1,0 +1,88 @@
+0.題目：HW5 Student Grades
+1.學號:406410114
+2.姓名:郭晏誠
+3.環境(哪一台工作站):csie2
+4.E-mail:mv123453715@gmail.com
+5.操作方法
+    (1)make可得到a.out
+    (2)./a.out 後輸入 test.txt 和 "OUTPUT_FILENAME" 可得到投影片測試輸入結果，可跟output_ans.txt比對
+    
+6.簡介:   
+    (1)Makefile(10%)
+      (i) 輸入 make 時，會把 source code 編譯出 a.out
+      (ii)輸入 make clean 時，可以把所有的中間檔和執行檔清除
+      
+    (2)Grade(90%)
+      (2.1)Grade.h
+          (i)class Student：Base class
+              (a)private變數：姓(_la_name)、名(_fir_name)、選修的課程(_course)
+              (b)Student( string ln,string fn,string c  ):_la_name(ln),_fir_name(fn),_course(c)：constructor，採用member initialization 
+              (c)~Student(){}：destructor
+              (d)virtual const void grade(){}：各科計算總平均成績方法：採用virtual實踐polymorphism 
+              (e)string const get_la_name() const  ：回傳姓，供Derived class使用，用const
+              (f)string const get_fir_name() const ：回傳名，供Derived class使用，用const
+              (g)string const get_course() const   ：回傳選修的課程，供Derived class使用，用const
+              
+          (ii)class English：Derived class
+              (a)private變數：
+                int _Attend(Attendance),_Pro(Project),_Mid(Midterm),_Final(Final Exam)
+                double _gra(儲存的總成績)
+              (b)English(string ln,string fn,string c ,int Att, int Pro,int Mid,int Fin) : Student(ln,fn,c), _Attend(Att),_Pro(Pro),_Mid(Mid),_Final(Fin),_gra(0.0) {}：
+                constructor，採用member initialization 
+              (c)~English(){}：destructor
+              (d)const void grade()：實作了Base Student中的virtual函數，計算總成績，Attendance = 10%, Project = 30%, Midterm = 30%, Final Exam = 30%
+              (e)int const get_Final() const：回傳期末成績，用const
+              (f)double get_gra()：回傳計算後的總成績
+              
+          (iii)class History：Derived class
+              (a)private變數：
+                int _Term(Term Paper ),_Mid(Midterm),_Final(Final Exam)
+                double _gra(儲存的總成績)
+              (b)History(string ln,string fn,string c ,int Term,int Mid,int Fin) : Student(ln,fn,c),_Term(Term),_Mid(Mid),_Final(Fin),_gra(0.0) {};
+                constructor，採用member initialization 
+              (c)~History(){}：destructor
+              (d)const void grade()：實作了Base Student中的virtual函數計算總成績，Term Paper = 25%, Midterm = 35%, Final Exam = 40%
+              (e)int const get_Final() const：回傳期末成績，用const
+              (f)double get_gra()：回傳計算後的總成績
+              
+          (iv)class Math：Derived class
+              (a)private變數：
+                int _Q1,_Q2,_Q3,_Q4,_Q5;(Quiz1-5 )
+                int _T1,_T2;(Test 1-2 )
+                int _Final(Final Exam)
+                double _gra(儲存的總成績)
+              (b)Math(string ln,string fn,string c ,int Q1,int Q2,int Q3,int Q4,int Q5,int T1,int T2,int Fin) : Student(ln,fn,c),_Q1(Q1),_Q2(Q2),_Q3(Q3),_Q4(Q4),_Q5(Q5),_T1(T1),_T2(T2),_Final(Fin),_gra(0.0) {};
+                constructor，採用member initialization 
+              (c)~Math(){}：destructor
+              (d)const void grade()：實作了Base Student中的virtual函數計算總成績，Quiz Average = 15%, Test 1 = 25%, Test 2 = 25%, Final Exam = 35%
+              (e)int const get_Final() const：回傳期末成績，用const
+              (f)double get_gra()：回傳計算後的總成績
+          
+          (v)char LetterGrade ( double &g )：回傳LetterGrade，參照https://en.wikipedia.org/wiki/Academic_grading_in_the_United_States
+          (vi)void test_input( vector<English> &Eng,vector<History> &His,vector<Math> &Mat )   
+            (a)讀入 inputfile， 一個資料型態裡面能儲存各種變數，且以學生為單位分別儲存，外層用vector達到以科目分類學生族群
+            (b)使用fin讀檔案
+            
+          (vii)void test_output ( vector<English> &Eng,vector<History> &His,vector<Math> &Mat )
+            (a)輸出outputfile，分別輸出ENGLISH CLASS、HISTORY CLASS、MATH CLASS每個學生的成績(按照input的順序)
+            (b)採用了stew調整輸出對齊
+            (c)採用了fixed和setprecision調整小數輸出位數
+            (d)使用fout讀檔案
+      
+      (2.2) Grade_main.cpp                ：呼叫test_input和test_output進行測試
+      (2.3) Grade_Student_get_course.cpp  ：實作(2.1)(i)  class Student中(e)
+      (2.4) Grade_Student_get_fir_name.cpp：實作(2.1)(i)  class Student中(f)
+      (2.5) Grade_Student_get_la_name.cpp ：實作(2.1)(i)  class Student中(g)
+      (2.6) Grade_English_grade.cpp       ：實作(2.1)(ii) class English中(d)
+      (2.7) Grade_English_get_Final.cpp   ：實作(2.1)(ii) class English中(e)
+      (2.8) Grade_English_get_grade.cpp   ：實作(2.1)(ii) class English中(f)
+      (2.9) Grade_History_grade.cpp       ：實作(2.1)(iii)class History中(d)
+      (2.10)Grade_History_get_Final.cpp   ：實作(2.1)(iii)class History中(e)
+      (2.11)Grade_History_get_grade.cpp   ：實作(2.1)(iii)class History中(f)      
+      (2.12)Grade_Math_grade.cpp          ：實作(2.1)(iv) class Math中(d)
+      (2.13)Grade_Math_get_Final.cpp      ：實作(2.1)(iv) class Math中(e)
+      (2.14)Grade_Math_get_grade.cpp      ：實作(2.1)(iv) class Math中(f)    
+      (2.15)Grade_LetterGrade.cpp         ：實作(2.1)(v)  char LetterGrade
+      (2.16)Grade_test_intput.cpp         ：實作(2.1)(vi) void test_input
+      (2.17)Grade_test_output.cpp         ：實作(2.1)(vii)void test_output    
+        

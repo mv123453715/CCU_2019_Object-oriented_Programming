@@ -1,0 +1,43 @@
+0.題目：HW5 Overloading: 45-digit bigint
+1.學號:406410114
+2.姓名:郭晏誠
+3.環境(哪一台工作站):csie2
+4.E-mail:mv123453715@gmail.com
+5.操作方法
+    (1)make可得到a.out
+    (2)./a.out < test.txt > output.txt 可得到投影片測試輸入結果，可跟output_ans.txt比對
+    (3)./a.out 可以手動從cmd 輸入資料，先輸入x(0~10^45-1) ，再輸入y(0~10^45-1)，會得到x+y和x-y的結果( 共可輸入3輪 )
+    
+6.簡介:   
+    (1)bigint(90%) 
+      (i)bigint.h：
+        定義class bigint 為一個無號整數，在十進位中最大可表示45位數，
+        分割成5個部分，並由陣列儲存，每個部分的範圍介於0~999999999 
+        bigint.h中包含(a)~(h)
+        (a)建構子 : 建構子的輸入有彈性
+                    bigint()                                       ：預設為0
+                    bigint(int x0)                                 ：x0
+                    bigint(int x0, int x1)                         ：x1*10^9+ x0
+                    bigint(int x0, int x1, int x2)                 ：x2*10^18+ x1*10^9+ x0
+                    bigint(int x0, int x1, int x2, int x3)         ：x3*10^27+ x2*10^18+ x1*10^9+ x0
+                    bigint(int x0, int x1, int x2, int x3, int x4) ：x4*10^36+ x3*10^27+ x2*10^18+ x1*10^9+ x0
+        (b)解構子 : ~bigint()
+        (c)複製建構子 : bigint( const bigint& b ) 
+        (d)friend istream &operator>>( istream & in , bigint& b)：operator overloading >> 宣告成friend，供cin使用，並用&不用額外copy constructor
+        (e)friend ostream & operator<<( ostream & out , const bigint& b )：operator overloading << 宣告成friend供cout使用，並用const 使const也可被cout，並用&不用額外copy constructor
+        (f)bigint operator +(const bigint &rs)：　operator overloading + ，與正常運算規則相同，若相加大小超過最大值，忽略進位，使用const保證被加數(right)不被更動
+        (g)bigint operator -(const bigint &rs)：　operator overloading - ，與正常運算規則相同，若相減大小小於0，輸出結果為0  ，使用const保證被加數(right)不被更動
+        (h)bool operator <(const bigint &rs)const：operator overloading < ，與正常運算規則相同，使用const保證input不被更動
+        (i)bool operator >(const bigint &rs)const：operator overloading > ，與正常運算規則相同，使用const保證input不被更動
+        (j)bool operator <=(const bigint &rs)const：operator overloading <= ，與正常運算規則相同，使用const保證input不被更動
+        (k)bool operator >=(const bigint &rs)const：operator overloading >= ，與正常運算規則相同，使用const保證input不被更動
+        (l)bool operator ==(const bigint &rs)const：operator overloading == ，與正常運算規則相同，使用const保證input不被更動
+        (m)bool operator !=(const bigint &rs)const：operator overloading != ，與正常運算規則相同，使用const保證input不被更動
+      (ii)bigint_add_op.cpp：實作(i)中的(f)
+      (iii)bigint_sub_op.cpp：實作(i)中的(g)
+      (iv)bigint_compare_op.cpp：實作(i)(h)~(m)
+        
+    (3)Makefile(10%)
+      (i) 輸入 make 時，會把 source code 編譯出 a.out
+      (ii)輸入 make clean 時，可以把所有的中間檔和執行檔清除
+        
