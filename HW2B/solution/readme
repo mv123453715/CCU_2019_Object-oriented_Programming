@@ -1,0 +1,56 @@
+0.題目：List of Integers & Ring TaskB,C
+1.學號:406410114
+2.姓名:郭晏誠
+3.環境(哪一台工作站):csie2
+4.E-mail:mv123453715@gmail.com
+5.簡介:   
+    (1)在序列中找出總和最大的最長子序列 (25%)
+        (i)操作方法：
+            (a)make產生myJar.jar
+            (b)java -jar myJar.jar  "FILENAME"
+            (c)cmd會顯示Maximum_Subarray的sum和max_len並印出可能多個Maximum_Subarray
+            
+        (ii)設計簡介：
+            (a)使用Kadane's 演算法(dynamic porgramming)，複雜度為O(n)，詳細說明請見(3)或是code註解
+            (b)使用ArrayList可自由調整矩陣大小，增加記憶體使用率
+            (c)若存在多筆長度相同的"總和最大的最長子序列"都會輸出
+            
+    (2)使用C++完成 : 建構和刪除Ring結構 (40%)
+        (i)操作方法：
+            (a)make產生a.out
+            (b)./a.out  "FILENAME"
+            (c)cmd會顯示RingNode內容並進行刪除
+            
+        (ii)請建立一個Ring 結構
+            (a)refs.h中定義了class Ring node，其value和next均為public，提供其他cpp #include "refs.h"使用class Ring node
+        (iii)遞迴(依序)讀取檔案資料進node
+            (a)read_Input_to_RingNode.cpp將檔名傳入並且打開檔案
+            (b)read_recursively.cpp 遞迴中使用file.get(char c)拿到每個字元
+            (c)遞迴中若Ring is Null，創建一個新的current並把head指向current，當讀完檔案時將current指向head
+        (iv)印出Ring內容的函式 
+            (a)print_the_ring.cpp 走訪並印出Ring中所有內容 
+        (v)刪除Ring的所有node
+            (a)delete_RingNode.cpp從head開始走訪，若head->null則free(head)，否則用current記住head位置後head=head->next然後free(current)
+            (b)cmd會輸出RingNode origianl size和delete_RingNode size
+    
+    (3)[Bonus] 針對Task 2 : 給出時間複雜度小於 O(n3) 的程式(10%)
+            複雜度    詳細說明
+        ---------------------------------------------------------------------------------------------
+               O(n)   先判斷全部資料是否有至少一個>=0，若有開始找最長子序列，否則直接回傳最大負數
+            +  O(n)   以下為Kadane's 演算法虛擬碼講解
+                      max = array[0];        //一開始設定max為array[0]
+                      for (int i = 0; i < array.Length; i++){ //開始找最長子序列
+                        sum += array[i];     //加下一項
+                        sum = Max(0, sum);   //判斷sum是否>=0
+                        if ( sum >= max ){ //判斷sum是否大於max
+                            max = sum; 
+                            record this Maximum_Subarray and length;
+                        }//if
+                      }//for
+            +  O(n)   輸出所有record 中 最長的Maximum_Subarray(可能多個) 
+         ---------------------------------------------------------------------------------------------
+          總計 O(n)
+          
+    (4)Makefile (5%)
+        (i) 輸入 make 時，會把 source code 編譯出 myJar.jar和a.out
+        (ii)輸入 make clean 時，可以把所有的中間檔和執行檔清除

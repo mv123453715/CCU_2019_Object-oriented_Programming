@@ -1,0 +1,44 @@
+0.題目：HW3 Diamond
+1.學號:406410114
+2.姓名:郭晏誠
+3.環境(哪一台工作站):csie2
+4.E-mail:mv123453715@gmail.com
+5.操作方法
+    (1)make
+    (2)./a.out即可看到C++版本結果
+    (3)java -jar myJar.jar 即可看到Java版本結果
+6.簡介:   
+    (1)菱形相關(90%)
+        (i)main.cpp
+            (a)code來源於OOP_hw3 pdf p7-p10
+        (ii)diamond.h
+            (a)class Diamond private定義了int nuit_num,char side,char filler
+            (b)Diamond ( int num,char s = '#',char f = '*' ) :nuit_num(num),side(s),filler(f)  
+               : constructor 採用member initializer進行初始化
+               邊長為1~39，<1 為1，>39為39
+               邊長符號預設為'#'，介於ascii 33~126號，超過就用預設
+               填充符號預設為'*'，介於ascii 33~126號，超過就用預設
+            (c)~Diamond ()                     : destructor  
+            (d)const int GetSize( void ) const : return nuit_num
+            (e)const int Perimeter(void) const : return 周長( nuit_num*4 )
+            (f)const double Area(void)   const : return 面積( 正三角面積公式*2 pow(nuit_num,2) * sqrt(3.0)/2.0)
+            (g)void Grow(void)                 : 讓所有邊長增大 1，大於39 則為39
+            (h)void Shrink(void)               : 讓所有邊長減小 1，小於1  則為1
+            (i)void SetBorder(char new_side )  : 更換邊長符號(ascii 33~126)，當符號不合法時採用預設'#'
+            (j)void SetFill( char new_filler)  : 更換填充符號(ascii 33~126)，當符號不合法時採用預設'*'
+            (k)void Draw(void)     const       : 印出菱形的樣子，在填充時符號間會間隔一個 '空白'
+            (l)void Summary(void)  const       : 印出邊長(用GetSize)、周長(用Perimeter)、面積(用Area)、菱形的樣子(用Draw)
+        
+        (iii)diamond.cpp
+            (i)實作了diamond.h中不改變變數的const function (ii)(e)(f)(k)(l) 和改變變數的function (ii)(g)~(j)
+            
+    (2)Makeflie(10%)
+        (i) 輸入 make 時，會把 source code編譯成a.out
+        (ii)輸入 make clean 時，可以把所有的中間檔和執行檔清除
+        
+    (3)Bonus[10%]繳交Java版本
+        (i)test.java
+            pdf p14-15 test code
+        (ii)./lib/diamond.java:實作了各個函數，定義與C++版本相同
+        (iii)對於get方面的函數，採用final 防止後面繼承的類別修改
+        

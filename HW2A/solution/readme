@@ -1,0 +1,30 @@
+0.題目：List of Integers & Ring TaskA
+1.學號:406410114
+2.姓名:郭晏誠
+3.環境(哪一台工作站):csie0
+4.E-mail:mv123453715@gmail.com
+5.簡介:
+    (0)使用方法和error handle
+        (i)make後 輸入 ./a.out + "FILENAME"即可得到結果
+        (ii) 若只輸入./a.out 會輸出Error! please enter ./a.out + "FILENAME"
+        (iii)若檔名錯誤      會輸出"Error! opening file isn't exist!\n"
+        
+    (1)使用C++完成規定的四種函式 (30%)
+        (i)ReadList.h
+            ● 使用fgets 以避免windos和linux中的Linefeed不同的問題( windos為\r\n,Linux為\n )
+            ● 使用vector來自動配置需要的記憶體
+        (ii)Avgs.h
+            ● 使用float來計算整體平均值
+			      ● 使用float來計算正數平均值
+		      	● 使用float來計算負數平均值
+        (iii)Large.h
+            ● 回傳vector最大整數值
+        (iv)Display.h
+            ● 輸出array A 內容
+            ● 輸出整體平均值
+            ● 輸出正數平均值
+            ● 輸出負數平均值
+            ● 輸出最大整數值
+    (2)Makefile (5%)
+        (i) 輸入 make 時，會把 source code 編譯出 a.out
+        (ii)輸入 make clean 時，可以把所有的中間檔 (例如 .o) 和執行檔 (.out) 清除

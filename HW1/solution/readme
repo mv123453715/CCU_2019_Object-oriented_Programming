@@ -1,0 +1,33 @@
+0.題目：Characters Frequency Calculator
+1.學號:406410114
+2.姓名:郭晏誠
+3.環境(哪一台工作站):csie0
+4.E-mail:mv123453715@gmail.com
+5.簡介:
+    (1)以C++撰寫 字元計數程式(40%) 
+        (i)執行：
+            make後自動產生a.out，然後輸入 ./a.out "STRING"
+        (ii)設計介紹：
+            typedef struct Char_statis {  //儲存字元的種類與數量資料結構
+              char c;
+              int num;
+            } Char_statis;
+            int is_find( Char_statis char_fre_matrix[],char c ,int ch_f_num);
+            //判斷是否找到已經出現過的字元，是則回傳第幾個字元，若無則回傳-1
+            //not find 創建新字元  find 有的字元+1
+            
+    (2)以Java撰寫 字元計數程式(35%) 
+        (i)執行：
+            javac OOP_HW1_406410114_JAVA.java
+            jar cfe myJar.jar OOP_HW1_406410114_JAVA OOP_HW1_406410114_JAVA.class
+            java -jar myJar.jar  "STRING"
+			
+        (ii)設計介紹：
+            同C++，java code有更多詳細註解
+            
+    (3)MakeFile (10%) 
+        (i)需使用make，針對C++程式碼撰寫，JAVA則無
+        (ii)make clean 可刪除輸出檔案
+        
+    (4)Debugger (15%) 
+		    (i)請見檔案OOP_HW1_406410114_Debugger.pdf
